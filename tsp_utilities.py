@@ -8,20 +8,17 @@ def get_graph(nodes):
 
     G = nx.Graph()
     G.add_nodes_from(np.arange(0, nodes, 1))
-    # TODO Add edges randomly
-    elist = {(0,1,1.0),
-             (0,2,1.0),
-             (0,3,1.0),
-             (1,2,1.0),
-             (2,3,1.0),
-             (3,4,2.0),
-             (0,4,1.0),
-             (3,4,1.5),
-             (2,4,1.0)}
+
+    # Create random edges.
+    # Note: Dwave and other solvers require a complete graph
+    elist = set()
+    for i in range(nodes):
+        for t in range(i + 1,nodes):
+            _tuple = (i, t, np.random.rand() * 10)
+            elist.add(_tuple)
 
     # tuple is (i,j,weight) where (i,j) is the edge
     G.add_weighted_edges_from(elist)
-    #G.add_weighted_edges_from({(0, 1, .1), (0, 2, .5), (0, 3, .1), (1, 2, .1), (1, 3, .5), (2, 3, .1)})
 
     return G
 
@@ -43,7 +40,7 @@ def calculate_cost(cost_matrix, solution):
 
     return cost
 
-def draw_tsp_solution(G, order):
+def draw_tsp_solution(G, order, solver, end_time):
 
     colors = ['r' for node in G.nodes()]
     pos = nx.spring_layout(G)
@@ -58,4 +55,8 @@ def draw_tsp_solution(G, order):
 
 
     nx.draw_networkx(G2, node_color=colors, node_size=600, alpha=.8, ax=default_axes, pos=pos)
+    plt.title(solver)
+    # Print png or show in screen
+    #plt.savefig(solver + '_' + str(end_time) + '.png')
+    #plt.clf()
     plt.show()

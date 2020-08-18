@@ -2,7 +2,7 @@ from itertools import permutations
 
 class Bruteforce:
 
-    def calculate(self, G, cost_matrix, starting_node):
+    def calculate(self, G, cost_matrix, starting_node = 0):
 
         n = len(list(G))
 
