@@ -7,7 +7,8 @@ from tsp_utilities import *
 ## ADD HERE YOUR NEW SOLVERS CLASSES #########
 ##############################################
 active_solvers = ["Bruteforce",
-                  "Dwave_tsp"]
+                  #"Dwave_tsp",
+                  "TSP_genetico"]
 ##############################################
 ##############################################
 
@@ -31,3 +32,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
