@@ -19,5 +19,5 @@ class Bruteforce:
             if distance < last_best_distance:
                 best_order = order
                 last_best_distance = distance
-                print('order = ' + str(order) + ' Distance = ' + str(distance))
+                #('order = ' + str(order) + ' Distance = ' + str(distance))
         return list(best_order)
