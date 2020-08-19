@@ -14,7 +14,7 @@ class TSP_genetico:
         samples = 100
         n_top = samples // 2
 
-        print(cost_matrix)
+        #print(cost_matrix)
         for _ in range(epochs):
 
             population = self.generate_population(n, samples)

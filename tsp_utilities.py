@@ -9,12 +9,20 @@ def get_graph(nodes):
     G = nx.Graph()
     G.add_nodes_from(np.arange(0, nodes, 1))
 
-    # Create random edges.
+    # Create random positions in the graph. Distance will be calculated from positions
     # Note: Dwave and other solvers require a complete graph
+    for i in range(nodes):
+        G.nodes[i]['pos'] = (np.random.uniform(0, 10), np.random.uniform(0, 10))
+
     elist = set()
     for i in range(nodes):
         for t in range(i + 1,nodes):
-            _tuple = (i, t, np.random.rand() * 10)
+            y1=G.nodes[i]['pos'][1]
+            x1=G.nodes[i]['pos'][0]
+            y2=G.nodes[t]['pos'][1]
+            x2=G.nodes[t]['pos'][0]
+            dist = np.sqrt(((x2-x1)**2)+((y2-y1)**2))
+            _tuple = (i, t, dist)
             elist.add(_tuple)
 
     # tuple is (i,j,weight) where (i,j) is the edge
@@ -43,7 +51,7 @@ def calculate_cost(cost_matrix, solution):
 def draw_tsp_solution(G, order, solver, end_time):
 
     colors = ['r' for node in G.nodes()]
-    pos = nx.spring_layout(G)
+
     default_axes = plt.axes(frameon=True)
 
     G2 = G.copy()
@@ -53,7 +61,7 @@ def draw_tsp_solution(G, order, solver, end_time):
         j = (i + 1) % n
         G2.add_edge(order[i], order[j])
 
-
+    pos = nx.get_node_attributes(G, 'pos')
     nx.draw_networkx(G2, node_color=colors, node_size=600, alpha=.8, ax=default_axes, pos=pos)
     plt.title(solver)
     # Print png or show in screen
