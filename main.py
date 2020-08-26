@@ -8,7 +8,7 @@ from tsp_utilities import *
 ##############################################
 active_solvers = ["Bruteforce",
                   "Dwave_tsp",
-                  "TSP_genetico"]
+                  "TSP_genetico", "Numpyeigensolver"]
 ##############################################
 ##############################################
 

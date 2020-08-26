@@ -11,7 +11,6 @@ class Numpyeigensolver:
         G.nodes[0]['pos']
         coords = []
         for node in G.nodes:
-            print(node)
             coords.append(G.nodes[0]['pos'])
 
         tsp_instance = tsp.TspData(name = "TSP", dim = len(G.nodes), coord = coords, w = cost_matrix)
