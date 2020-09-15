@@ -12,7 +12,7 @@ active_solvers = ["Bruteforce",
                   "Numpyeigensolver",
                   "Vqe"]
 
-active_solvers = ["OptimizedQAOA", "Vqe", "Bruteforce"]
+active_solvers = ["Vqe", "Bruteforce"]
 
 ##############################################
 ##############################################

@@ -1,9 +1,9 @@
 import numpy as np
-from qiskit import Aer
+from qiskit import Aer, IBMQ
 from qiskit.aqua import aqua_globals, QuantumInstance
 from qiskit.aqua.components.optimizers import SPSA, COBYLA
 from qiskit.aqua.algorithms import VQE, NumPyMinimumEigensolver
-from qiskit.circuit.library import TwoLocal
+from qiskit.circuit.library import TwoLocal, RealAmplitudes
 from qiskit.optimization.applications.ising import tsp
 from qiskit.optimization.applications.ising.common import sample_most_likely
 
@@ -19,17 +19,26 @@ class Vqe:
         tsp_instance = tsp.TspData(name = "TSP", dim = len(G.nodes), coord = coords, w = cost_matrix)
 
         qubitOp, offset = tsp.get_operator(tsp_instance)
-
+        print("Qubits needed: ", qubitOp.num_qubits)
         #print(qubitOp.print_details())
 
         #backend = Aer.get_backend('statevector_simulator')
         backend = Aer.get_backend('qasm_simulator')
+
+        # Use real backend
+        IBMQ.load_account()
+        provider = IBMQ.get_provider('ibm-q')
+        from qiskit.providers.ibmq import least_busy
+        backend = least_busy(provider.backends(filters=lambda x: x.configuration().n_qubits > qubitOp.num_qubits and not x.configuration().simulator ))
+        print(backend.name())
+        
         quantum_instance = QuantumInstance(backend)
 
         #optimizer = SPSA(maxiter=400)
-        optimizer = COBYLA(maxiter=300, rhobeg=3, tol=1.5)
-        #ry = TwoLocal(qubitOp.num_qubits, 'ry', 'cz', reps=3, entanglement='linear')
-        vqe = VQE(operator=qubitOp, optimizer=optimizer, quantum_instance=quantum_instance)
+        optimizer = COBYLA(maxiter=200, rhobeg=0.3, tol=0.1, disp=True)
+        ry = TwoLocal(qubitOp.num_qubits, 'ry', 'cz', reps=4, entanglement='full')
+        ra = RealAmplitudes(qubitOp.num_qubits, reps=2)
+        vqe = VQE(operator=qubitOp, var_form=ry, optimizer=optimizer, quantum_instance=quantum_instance)
 
         result = vqe.run(quantum_instance)
 
