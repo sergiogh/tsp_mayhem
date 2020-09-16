@@ -34,8 +34,8 @@ class Vqe:
 
         quantum_instance = QuantumInstance(backend)
 
-        #optimizer = SPSA(maxiter=400)
-        optimizer = COBYLA(maxiter=200, rhobeg=0.3, tol=0.1, disp=True)
+        optimizer = SPSA(maxiter=400)
+        #optimizer = COBYLA(maxiter=200, rhobeg=0.3, tol=0.1, disp=True)
         ry = TwoLocal(qubitOp.num_qubits, 'ry', 'cz', reps=4, entanglement='full')
         ra = RealAmplitudes(qubitOp.num_qubits, reps=2)
         vqe = VQE(operator=qubitOp, var_form=ry, optimizer=optimizer, quantum_instance=quantum_instance)

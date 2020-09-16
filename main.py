@@ -12,7 +12,11 @@ active_solvers = ["Bruteforce",
                   "Numpyeigensolver",
                   "Vqe"]
 
+<<<<<<< HEAD
 active_solvers = ["Admm", "Bruteforce"]
+=======
+active_solvers = ["Dwave_tsp", "Bruteforce"]
+>>>>>>> trying to build the dwave QUBO
 
 ##############################################
 ##############################################
