@@ -12,11 +12,7 @@ active_solvers = ["Bruteforce",
                   "Numpyeigensolver",
                   "Vqe"]
 
-<<<<<<< HEAD
-active_solvers = ["Admm", "Bruteforce"]
-=======
 active_solvers = ["Dwave_tsp", "Bruteforce"]
->>>>>>> trying to build the dwave QUBO
 
 ##############################################
 ##############################################
@@ -24,7 +20,7 @@ active_solvers = ["Dwave_tsp", "Bruteforce"]
 def main():
 
 
-    nodes = 3
+    nodes = 5
     starting_node = 0
     G = get_graph(nodes)
     cost_matrix = get_cost_matrix(G, nodes)
