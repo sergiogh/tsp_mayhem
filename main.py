@@ -8,7 +8,12 @@ from tsp_utilities import *
 ##############################################
 active_solvers = ["Bruteforce",
                   "Dwave_tsp",
-                  "TSP_genetico", "Numpyeigensolver"]
+                  "TSP_genetico",
+                  "Numpyeigensolver",
+                  "Vqe"]
+
+active_solvers = ["Admm", "Bruteforce"]
+
 ##############################################
 ##############################################
 
@@ -31,7 +36,7 @@ def main():
         calculation_time = end_time - start_time
         print(route)
         print("%s Solution - Cost: %s - Calculation Time: %s" % (solver_, calculate_cost(cost_matrix, route), calculation_time))
-        draw_tsp_solution(G, route, solver_, end_time)
+        #draw_tsp_solution(G, route, solver_, end_time)
 
 
 if __name__ == '__main__':
