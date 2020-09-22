@@ -8,18 +8,12 @@ from tsp_utilities import *
 ##############################################
 active_solvers = ["Bruteforce",
                   "Dwave_tsp",
-<<<<<<< HEAD
-                  "TSP_genetico", "Numpyeigensolver"]
-
-active_solvers = ["Bruteforce", "Admm"]
-=======
                   "TSP_genetico",
                   "Numpyeigensolver",
                   "Vqe"]
 
 active_solvers = ["Admm", "Bruteforce"]
 
->>>>>>> 6209be83266d7276df8be29b451094c86b1097f9
 ##############################################
 ##############################################
 
