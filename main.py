@@ -20,7 +20,7 @@ active_solvers = ["Dwave_tsp", "Bruteforce"]
 def main():
 
 
-    nodes = 5
+    nodes = 6
     starting_node = 0
     G = get_graph(nodes)
     cost_matrix = get_cost_matrix(G, nodes)
