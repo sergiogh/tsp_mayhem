@@ -21,19 +21,28 @@ class Dwave_tsp:
 
         #bqm = dimod.BinaryQuadraticModel.from_networkx_graph(G, 'BINARY')
         Q = dnx.algorithms.traveling_salesman_qubo(G)
-        bqm = dimod.BinaryQuadraticModel.from_qubo(Q)
+        #bqm = dimod.BinaryQuadraticModel.from_qubo(Q)
+        bqm = dimod.BinaryQuadraticModel.from_networkx_graph(G, 'BINARY', edge_attribute_name='weight')
 
-        response = EmbeddingComposite(DWaveSampler(solver='DW_2000Q_6')).sample(bqm, chain_strength=600)
+        #response = EmbeddingComposite(DWaveSampler(solver='DW_2000Q_6')).sample(bqm, chain_strength=30)
 
-        self.decode_solution(response, cost_matrix)
-        print(self.solution)
-        print(self.distribution)
+        sampler = EmbeddingComposite(DWaveSampler(solver='DW_2000Q_6'))
+        route = dnx.traveling_salesperson(G, sampler, 15.0, weight='weight')
+
+        #self.decode_solution(response, cost_matrix)
+        #print(self.solution)
+        #print(self.distribution)
 
         # nx.draw_networkx(G, node_color=colors, node_size=400, alpha=.8, ax=default_axes, pos=pos)
         # Test with https://docs.ocean.dwavesys.com/en/latest/docs_dnx/reference/algorithms/tsp.html
-        #route = dnx.traveling_salesperson(G, dimod.ExactSolver(), start=starting_node)
-
-        return self.solution
+        route_classic = dnx.traveling_salesperson(G, dimod.ExactSolver(), start=starting_node)
+        print("Exact classical solver:")
+        print(route_classic)
+        print("Full Q Annealer solver:")
+        print(route)
+        return []
+        #return route
+        #return self.solution
 
 
     def binary_state_to_points_order(self, binary_state):
