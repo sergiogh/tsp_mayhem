@@ -26,7 +26,16 @@ class TSP_genetico:
             new_population = self.mutation(new_population, prob_mutation)
 
         cost_population = [self.cost_travel(person, cost_matrix) for person in new_population]
-        return new_population[np.argmin(cost_population)]
+
+        route = new_population[np.argmin(cost_population)]
+
+        # Put the start node at the beginning
+        if route[0] != starting_node:
+            # rotate to put the start in front
+            idx = route.index(starting_node)
+            route = route[idx:] + route[:idx]
+
+        return route
 
     def cost_travel(self, travel, cost_matrix):
 
