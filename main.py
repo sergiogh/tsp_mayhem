@@ -12,7 +12,7 @@ active_solvers = ["Bruteforce",
                   "Numpyeigensolver",
                   "Vqe"]
 
-active_solvers = ["Dwave"]
+active_solvers = ["Dwave_hybrid"]
 
 ##############################################
 ##############################################
@@ -20,7 +20,7 @@ active_solvers = ["Dwave"]
 def main():
 
 
-    nodes = 5
+    nodes = 9
     starting_node = 0
     G = get_graph(nodes)
     cost_matrix = get_cost_matrix(G, nodes)

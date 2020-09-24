@@ -27,7 +27,7 @@ class Dwave:
         #response = EmbeddingComposite(DWaveSampler(solver='DW_2000Q_6')).sample(bqm, chain_strength=30)
 
         sampler = AutoEmbeddingComposite(DWaveSampler(solver='DW_2000Q_6'))
-        route = dnx.traveling_salesperson(G, sampler, lagrange=30.0, weight='weight')
+        route = dnx.traveling_salesperson(G, sampler, lagrange=90.0, weight='weight')
 
         #self.decode_solution(response, cost_matrix)
         #print(self.solution)
