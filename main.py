@@ -12,7 +12,7 @@ active_solvers = ["Bruteforce",
                   "Numpyeigensolver",
                   "Vqe"]
 
-active_solvers = ["Dwave_hybrid"]
+active_solvers = ["Dwave_hybrid", "Bruteforce", "TSP_genetico"]
 
 ##############################################
 ##############################################
@@ -36,7 +36,7 @@ def main():
         calculation_time = end_time - start_time
         print(route)
         print("%s Solution - Cost: %s - Calculation Time: %s" % (solver_, calculate_cost(cost_matrix, route), calculation_time))
-        #draw_tsp_solution(G, route, solver_, end_time)
+        draw_tsp_solution(G, route, solver_, end_time)
 
 
 if __name__ == '__main__':
