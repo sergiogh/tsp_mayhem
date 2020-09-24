@@ -12,7 +12,7 @@ active_solvers = ["Bruteforce",
                   "Numpyeigensolver",
                   "Vqe"]
 
-active_solvers = ["Dwave_tsp", "Bruteforce"]
+active_solvers = ["Dwave_hybrid"]
 
 ##############################################
 ##############################################
