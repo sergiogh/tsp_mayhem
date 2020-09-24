@@ -43,4 +43,15 @@ class Annealing:
                     best = current
             # decrease temp
             temp -= cooling_rate
-        return list(best)
+
+        route = []
+        for i in best:
+            route.append(i[0])
+
+        # Put the start node at the beginning
+        if route[0] != starting_node:
+            # rotate to put the start in front
+            idx = route.index(starting_node)
+            route = route[idx:] + route[:idx]
+
+        return route

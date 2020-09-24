@@ -11,10 +11,6 @@ from dwave.system import LeapHybridSampler
 class Dwave_hybrid:
     def calculate(self, G, cost_matrix, starting_node):
 
-        if(len(G.nodes) > 9):
-            print("Dwave 2000Q systems can only embed up to 9 nodes on the lattice with current algorithm")
-            return []
-
         sampler = LeapHybridSampler()
         result = dnx.traveling_salesman(G, sampler, start=0)
 
