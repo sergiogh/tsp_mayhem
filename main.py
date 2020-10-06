@@ -12,7 +12,7 @@ active_solvers = ["Bruteforce",
                   "Numpyeigensolver",
                   "Vqe"]
 
-active_solvers = ["Admm", "Bruteforce"]
+active_solvers = ["Dwave"]
 
 ##############################################
 ##############################################
@@ -20,7 +20,7 @@ active_solvers = ["Admm", "Bruteforce"]
 def main():
 
 
-    nodes = 3
+    nodes = 6
     starting_node = 0
     G = get_graph(nodes)
     cost_matrix = get_cost_matrix(G, nodes)
@@ -36,7 +36,7 @@ def main():
         calculation_time = end_time - start_time
         print(route)
         print("%s Solution - Cost: %s - Calculation Time: %s" % (solver_, calculate_cost(cost_matrix, route), calculation_time))
-        #draw_tsp_solution(G, route, solver_, end_time)
+        draw_tsp_solution(G, route, solver_, end_time)
 
 
 if __name__ == '__main__':
