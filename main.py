@@ -20,7 +20,7 @@ active_solvers = ["Pennylane"]
 def main():
 
 
-    nodes = 4
+    nodes = 3
     starting_node = 0
     G = get_graph(nodes)
     cost_matrix = get_cost_matrix(G, nodes)

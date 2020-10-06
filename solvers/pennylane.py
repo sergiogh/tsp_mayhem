@@ -31,9 +31,9 @@ class Pennylane:
             qml.CNOT(wires=[3, 1])
 
         @qml.qnode(dev)
-        def final_circ(params, num_qubits):
-            circuit(params, range(num_qubits))
-            return qml.probs(wires=range(num_qubits))
+        def final_circ(params):
+            circuit(params, range(qubitOp.num_qubits))
+            return qml.probs(wires=range(qubitOp.num_qubits))
 
         # Prepare Hamiltonian in the shape Pennylane likes
         coeffs = []
@@ -61,7 +61,7 @@ class Pennylane:
         np.random.seed(0)
         params = np.random.normal(0, np.pi, (qubitOp.num_qubits, 3))
 
-        max_iterations = 80
+        max_iterations = 10
         conv_tol = 1e-06
 
         prev_energy = cost_fn(params)
@@ -86,7 +86,7 @@ class Pennylane:
         print('Cost: ',energy)
         print('Final circuit parameters = \n', params)
 
-        result = final_circ(params, qubitOp.num_qubits)
+        result = final_circ(params)
 
         print("Different states: ", len(result))
         print(min(result))
@@ -95,8 +95,7 @@ class Pennylane:
         print(idx)
         print("Cost: ", cost_fn(params))
 
-        binary_result = list(map(int, idx))
-        x = binary_state_to_points_order(list(binary_result))
+        x = list(map(int, idx))
         print(x)
 
         if(tsp.tsp_feasible(x)):
