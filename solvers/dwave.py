@@ -13,9 +13,9 @@ from dwave.system.composites import AutoEmbeddingComposite, EmbeddingComposite  
 class Dwave:
     def calculate(self, G, cost_matrix, starting_node):
 
-        if(len(G.nodes) > 9):
-            print("Dwave 2000Q systems can only embed up to 9 nodes on the lattice with current algorithm")
-            return []
+        #if(len(G.nodes) > 9):
+        #    print("Dwave 2000Q systems can only embed up to 9 nodes on the lattice with current algorithm")
+        #    return []
 
 
         # Different tests to make it happen!
@@ -23,7 +23,9 @@ class Dwave:
         #bqm = dimod.BinaryQuadraticModel.from_networkx_graph(G, 'BINARY', edge_attribute_name='weight')
         #response = EmbeddingComposite(DWaveSampler(solver='DW_2000Q_6')).sample(bqm, chain_strength=300, num_reads=1000)
         #print(response)
-        sampler = AutoEmbeddingComposite(DWaveSampler(solver='DW_2000Q_6'))
+
+        #sampler = AutoEmbeddingComposite(DWaveSampler(solver='DW_2000Q_6'))
+        sampler = AutoEmbeddingComposite(DWaveSampler(solver='Advantage_system1.1'))
         #sampleset = dimod.SimulatedAnnealingSampler().sample_qubo(Q)
         result = dnx.traveling_salesperson(G, sampler, start = starting_node, lagrange=90.0, weight='weight')
 
