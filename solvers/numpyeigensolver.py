@@ -14,11 +14,9 @@ class Numpyeigensolver:
             coords.append(G.nodes[0]['pos'])
 
         tsp_instance = tsp.TspData(name = "TSP", dim = len(G.nodes), coord = coords, w = cost_matrix)
-
         qubitOp, offset = tsp.get_operator(tsp_instance)
 
-
-        ee = NumPyEigensolver(qubitOp, k=1)
+        ee = NumPyEigensolver(qubitOp)
         result = ee.run()
 
 

@@ -6,8 +6,11 @@ class Bruteforce:
 
         n = len(list(G))
 
-        a = list(permutations(range(1,n)))
+        #a = list(permutations(range(1,n)))
+        a = permutations(range(1,n))
+        
         last_best_distance = 1e10
+        
         for i in a:
             distance = 0
             pre_j = 0

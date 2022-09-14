@@ -25,7 +25,7 @@ class Dwave:
         #print(response)
 
         #sampler = AutoEmbeddingComposite(DWaveSampler(solver='DW_2000Q_6'))
-        sampler = AutoEmbeddingComposite(DWaveSampler(solver='Advantage_system1.1'))
+        sampler = AutoEmbeddingComposite(DWaveSampler(solver='Advantage_system4.1'))
         #sampleset = dimod.SimulatedAnnealingSampler().sample_qubo(Q)
         result = dnx.traveling_salesperson(G, sampler, start = starting_node, lagrange=90.0, weight='weight')
 

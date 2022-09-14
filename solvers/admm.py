@@ -50,11 +50,8 @@ class Admm:
 
         result = admm.solve(qp)
         print(result)
-<<<<<<< HEAD
-        x = sample_most_likely(result.x)
-=======
+
         x = sample_most_likely(result.eigenstate)
->>>>>>> 6209be83266d7276df8be29b451094c86b1097f9
 
         if(tsp.tsp_feasible(x)):
             z = tsp.get_tsp_solution(x)
